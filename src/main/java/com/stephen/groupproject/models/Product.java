@@ -46,7 +46,7 @@ public class Product {
 	
 	@NotNull(message= "Price must not be blank!")
 	@Min(value=1, message="Price must be greater than 0")
-	private int price;
+	private double price;
 	
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -88,7 +88,7 @@ public class Product {
 	public Product(
 			String productName,
 			String description,
-			int price,
+			double price,
 			User user,
 			List<Cart> cart
 			) {
@@ -123,11 +123,11 @@ public class Product {
 		this.description = description;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
