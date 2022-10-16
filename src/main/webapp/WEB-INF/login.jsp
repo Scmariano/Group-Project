@@ -5,16 +5,14 @@ uri="http://www.springframework.org/tags/form"%> <%@ page isErrorPage="true"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-
     <title>Tres Amigos Clothier</title>
   </head>
   <body>
-    <!-- Page Title -->
+    <!-- Page Title Display -->
     <div class="container">
       <h3>Welcome to</h3>
       <h1>Tres Amigos</h1>
