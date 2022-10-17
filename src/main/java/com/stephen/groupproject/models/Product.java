@@ -34,6 +34,8 @@ public class Product {
 	@NotBlank(message= "Description must not be blank!")
 	@Column(columnDefinition = "LONGTEXT")
 	private String description;
+
+	private String image;
 	
 	@NotNull(message= "Price must not be blank!")
 	@Min(value=1, message="Price must be greater than 0")
@@ -53,8 +55,13 @@ public class Product {
 	@ManyToOne(fetch = FetchType.LAZY)
     private Cart cart;
 	
+	
 
-	public Product( String productName, String description, Double price, User user, Cart cart) {
+	public Product() {
+		
+	}
+
+	public Product(String image, String productName, String description, Double price, User user, Cart cart) {
 		this.productName = productName;
 		this.description = description;
 		this.price = price;
@@ -126,6 +133,14 @@ public class Product {
 			sum = sum + productInCart.getPrice();
 		}
 		return sum;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	@PrePersist

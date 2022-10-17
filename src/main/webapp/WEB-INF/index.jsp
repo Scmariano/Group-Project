@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%> <%@ taglib
 prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="form"
 uri="http://www.springframework.org/tags/form"%> <%@ page isErrorPage="true"%>
 <!DOCTYPE html>
@@ -28,34 +27,30 @@ uri="http://www.springframework.org/tags/form"%> <%@ page isErrorPage="true"%>
     <!--  -->
     <div class="section">
 		<img src="/img/carousel1.jpg" class="header img-fluid" />
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <title>Tres Amigos|Home</title>
-  </head>
-  <body>
-    <!-- Header -->
-    <div class="container">
-      <h1>Tres Amigos</h1>
-      <h2>Clothier</h2>
-      <!-- This will be the CART button. 
-      Will change button appearance once it's functional -->
-      <a href="url">Cart</a>
     </div>
 
     <!-- Product list. Will improve the appearance after functionality is added -->
-    <div>
-      <a href="url">Shirt</a>
-      <a href="url">Pants</a>
-      <a href="url">Tie</a>
-      <a href="url">Shoes</a>
+    <div class="categories">
+      <a href="url" class="btn btn-outline-secondary">Shirt</a>
+      <a href="url" class="btn btn-outline-secondary">Pants</a>
+      <a href="url" class="btn btn-outline-secondary">Tie</a>
+      <a href="url" class="btn btn-outline-secondary">Shoes</a>
+    </div>
+    
+    <div class="products">
+    	<c:forEach var="product" items="${ products }">
+    		<div class="card" style="width: 18rem;">
+			 	<img src="${ product.image }" class="card-img-top">
+			  	<div class="card-body">
+			    	<h5 class="card-title"><c:out value="${ product.productName }"/></h5>
+			    	<p class="card-text"><c:out value="${ product.description }"/></p>
+			    	<a href="#" class="btn btn-primary">Add to cart</a>
+			  	</div>
+			</div>
+    	</c:forEach>
     </div>
     
     
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body>
-</html>
-=======
   </body>
 </html>

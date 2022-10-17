@@ -63,9 +63,9 @@ public class ProductServ {
 	
 	//Add Product to cart
 	public void addToCart(Cart cart, Product product) {
-		List<Product>thisProduct = cart.getProductInCart();
+		List<Product>productInCart = cart.getProductInCart();
 		cart.increment();
-		thisProduct.add(product);
+		productInCart.add(product);
 		productRepo.save(product);
 	}
 	
