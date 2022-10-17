@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -24,7 +23,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -41,12 +39,12 @@ public class Product {
 	private String productName;
 	
 	@NotBlank(message= "Description must not be blank!")
-	@Size(min=3, message="Description should be more than 3 characters.")
+	@Column(columnDefinition = "LONGTEXT")
 	private String description;
 	
 	@NotNull(message= "Price must not be blank!")
 	@Min(value=1, message="Price must be greater than 0")
-	private double price;
+	private Double price;
 	
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -79,23 +77,23 @@ public class Product {
     )
     private List<User> likers;
 	
-	//Many to many Cart relationship
-	@OneToMany(mappedBy="productInCart", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Cart> cart;
+	@ManyToOne(fetch = FetchType.LAZY)
+    private Cart cart;
 	
 
 	public Product(
 			String productName,
 			String description,
-			double price,
+			Double price,
 			User user,
-			List<Cart> cart
+			List<User> likers,
+			Cart cart
 			) {
 		this.productName = productName;
 		this.description = description;
 		this.price = price;
 		this.user = user;
+		this.likers = likers;
 		this.cart = cart;
 	}
 
@@ -127,7 +125,7 @@ public class Product {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
@@ -163,14 +161,22 @@ public class Product {
 		this.likers = likers;
 	}
 
-	public List<Cart> getCart() {
+	
+	public Cart getCart() {
 		return cart;
 	}
 
-	public void setCart(List<Cart> cart) {
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
+
+	public Double getTotalPrice() {
+		Double sum = 0.0;
+		for(Product productInCart: cart.getProductInCart()) {
+			sum = sum + productInCart.getPrice();
+		}
+		return sum;
+	}
 	
 	
 	

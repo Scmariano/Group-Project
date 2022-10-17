@@ -1,12 +1,15 @@
 package com.stephen.groupproject.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Range;
@@ -21,13 +24,13 @@ public class Cart {
 	@Range(min=1, message = "Minimum item that you can have is 1")
 	private int count;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User userInCart;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name="product_id")
-    private Product productInCart;
+    private List <Product>productInCart;
 
 	public Cart() {}
 	
@@ -55,13 +58,27 @@ public class Cart {
 		this.userInCart = userInCart;
 	}
 
-	public Product getProductInCart() {
+	public List<Product> getProductInCart() {
 		return productInCart;
 	}
 
-	public void setProductInCart(Product productInCart) {
+	public void setProductInCart(List<Product> productInCart) {
 		this.productInCart = productInCart;
 	}
+
+	public void increment() {
+		// TODO Auto-generated method stub
+		count ++;
+		
+	}
+
+	public void decriment() {
+		// TODO Auto-generated method stub
+		count --;
+	}
+
+	
+
 	
 	
 	

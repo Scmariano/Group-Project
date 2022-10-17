@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -23,7 +24,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -85,9 +86,8 @@ public class User {
 	
 	
 	// Many to many relationship for cart!
-	@OneToMany(mappedBy="userInCart", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Cart> cart;
+	@OneToOne(mappedBy="userInCart", fetch = FetchType.LAZY)
+    private Cart cart;
 	
 	public User() {}
 
@@ -163,13 +163,15 @@ public class User {
 		this.likedProduct = likedProduct;
 	}
 
-	public List<Cart> getCart() {
+	public Cart getCart() {
 		return cart;
 	}
 
-	public void setCart(List<Cart> cart) {
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
+	
 	
 	
 	

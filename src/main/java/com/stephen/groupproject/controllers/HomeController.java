@@ -24,7 +24,7 @@ public class HomeController {
 	public String index(Model model) {
 		model.addAttribute("newUser", new User());
 		model.addAttribute("newLogin", new LoginUser());
-		return "index.jsp";
+		return "login.jsp";
 	}
 	
 	//Registration form
@@ -36,7 +36,7 @@ public class HomeController {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("newLogin", new LoginUser());
-			return "index.jsp";
+			return "login.jsp";
 		}else {
 			session.setAttribute("userId", user.getId());
 			return "redirect:/home";
@@ -53,7 +53,7 @@ public class HomeController {
 		
 		if(result.hasErrors() || user==null) {
 			model.addAttribute("newUser",new User());
-			return "index.jsp";
+			return "login.jsp";
 		}
 			session.setAttribute("userId", user.getId());
 			return "redirect:/home";
