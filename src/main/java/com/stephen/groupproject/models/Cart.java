@@ -63,6 +63,10 @@ public class Cart {
 	public void setProductInCart(List<Product> productInCart) {
 		this.productInCart = productInCart;
 	}
+	
+	public void addProductToCart(Product product) {
+		this.productInCart.add(product);
+	}
 
 	public void increment() {
 		count ++;

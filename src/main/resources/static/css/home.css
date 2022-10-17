@@ -45,3 +45,20 @@ body {
 .header {
 	width: 100%;
 }
+
+.categories {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.categories a {
+	width: 100%;
+}
+
+.products {
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 50px;
+	padding-right: 50px;
+}

@@ -30,11 +30,24 @@ uri="http://www.springframework.org/tags/form"%> <%@ page isErrorPage="true"%>
     </div>
 
     <!-- Product list. Will improve the appearance after functionality is added -->
-    <div>
-      <a href="url">Shirt</a>
-      <a href="url">Pants</a>
-      <a href="url">Tie</a>
-      <a href="url">Shoes</a>
+    <div class="categories">
+      <a href="url" class="btn btn-outline-secondary">Shirt</a>
+      <a href="url" class="btn btn-outline-secondary">Pants</a>
+      <a href="url" class="btn btn-outline-secondary">Tie</a>
+      <a href="url" class="btn btn-outline-secondary">Shoes</a>
+    </div>
+    
+    <div class="products">
+    	<c:forEach var="product" items="${ products }">
+    		<div class="card" style="width: 18rem;">
+			 	<img src="${ product.image }" class="card-img-top">
+			  	<div class="card-body">
+			    	<h5 class="card-title"><c:out value="${ product.productName }"/></h5>
+			    	<p class="card-text"><c:out value="${ product.description }"/></p>
+			    	<a href="#" class="btn btn-primary">Add to cart</a>
+			  	</div>
+			</div>
+    	</c:forEach>
     </div>
     
     
