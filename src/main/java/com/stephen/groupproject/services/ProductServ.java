@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.stephen.groupproject.models.Cart;
 import com.stephen.groupproject.models.Product;
-import com.stephen.groupproject.models.User;
 import com.stephen.groupproject.repositories.CartRepo;
 import com.stephen.groupproject.repositories.ProductRepo;
 
@@ -59,18 +58,8 @@ public class ProductServ {
 	}
 	
 	// liking a product
-	public void likeProduct(Product product, User userId) {
-		List<User>likers = product.getLikers();
-		likers.add(userId);
-		productRepo.save(product);
-	}
 	
 	// unliking a product
-	public void unLikeProduct(Product product, User userId) {
-		List<User>likers = product.getLikers();
-		likers.remove(userId);
-		productRepo.save(product);
-	}
 	
 	//Add Product to cart
 	public void addToCart(Cart cart, Product product) {

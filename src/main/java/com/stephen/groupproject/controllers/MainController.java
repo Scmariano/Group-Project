@@ -132,25 +132,6 @@ public class MainController {
 	}
 	
 	
-	// a Tag for liking a product
-	@GetMapping("/products/{id}/like")
-	public String likeProduct(@PathVariable("id")Long id, HttpSession session) {
-		Long userId = (Long) session.getAttribute("userId");
-		Product thisProduct = productServ.findProductId(id);
-		User loggedUser = userServ.findById(userId);
-		productServ.likeProduct(thisProduct, loggedUser);
-		return "redirect:/dashboard";
-	}
-	
-	// a Tag for unliking a product
-	@GetMapping("/products/{id}/unLike")
-	public String unLikeProduct(@PathVariable("id")Long id, HttpSession session) {
-		Long userId = (Long) session.getAttribute("userId");
-		Product thisProduct = productServ.findProductId(id);
-		User loggedUser = userServ.findById(userId);
-		productServ.unLikeProduct(thisProduct, loggedUser);
-		return "redirect:/dashboard";
-	}
 	
 	
 
