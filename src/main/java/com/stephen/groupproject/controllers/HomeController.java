@@ -29,17 +29,16 @@ public class HomeController {
 	
 	//Registration form
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute("newUser")User newUser, 
-			BindingResult result, Model model, HttpSession session) {
+	public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
 		
 		User user = userServ.register(newUser, result);
 		
-		if(result.hasErrors()) {
+		if (result.hasErrors() || user == null) {
 			model.addAttribute("newLogin", new LoginUser());
 			return "login.jsp";
-		}else {
+		} else {
 			session.setAttribute("userId", user.getId());
-			return "redirect:/home";
+			return "redirect:/dashboard";
 		}
 		
 	}
@@ -56,9 +55,11 @@ public class HomeController {
 			return "login.jsp";
 		}
 			session.setAttribute("userId", user.getId());
-			return "redirect:/home";
+			return "redirect:/dashboard";
 		
 	}
+	
+	
 	
 	
 	//Get Method for logout/ We can change it to a Post if you guys want it to be a button form

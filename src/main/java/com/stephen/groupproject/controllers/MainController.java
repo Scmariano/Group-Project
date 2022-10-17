@@ -19,17 +19,13 @@ public class MainController {
 	@GetMapping("/dashboard")
 	public String dashboard(HttpSession session, Model model) {
 		Long userId = (Long) session.getAttribute("userId");
-		if(userId == null) {
+		if (userId == null) {
 			return "redirect:/logout";
-		}else {
+		} else {
 			model.addAttribute("user", userServ.findById(userId));
 			model.addAttribute("products", productServ.allProducts());
 			return "index.jsp";
 		}
 	}
-	
-	
-	
-	
 	
 }

@@ -16,6 +16,7 @@ import com.stephen.groupproject.repositories.UserRepo;
 
 @Service
 public class UserServ {
+	
 	@Autowired UserRepo userRepo;
 	
 	// Registration call

@@ -12,16 +12,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Range;
-
 @Entity
 @Table(name="cart")
 public class Cart {
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
-	@Range(min=1, message = "Minimum item that you can have is 1")
 	private int count;
 	
 	@OneToOne(fetch = FetchType.LAZY)
@@ -67,13 +65,11 @@ public class Cart {
 	}
 
 	public void increment() {
-		// TODO Auto-generated method stub
 		count ++;
 		
 	}
 
 	public void decriment() {
-		// TODO Auto-generated method stub
 		count --;
 	}
 
