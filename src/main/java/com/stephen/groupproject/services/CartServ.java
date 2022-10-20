@@ -67,12 +67,6 @@ public class CartServ {
 		cartRepo.deleteById(id);
 	}
 	
-	public void showCart(Cart cart) {
-		for(ProductInCart productInCart : cart.getProductInCart()) {
-			System.out.println(productInCart.getProductName());
-		}
-	}
-	
 }
 
 >>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
