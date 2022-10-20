@@ -59,6 +59,8 @@ body {
 .products {
 	display: flex;
 	flex-wrap: wrap;
+	padding-left: 50px;
+	padding-right: 50px;
 	justify-content: space-between;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -130,4 +132,5 @@ body {
 	position: absolute;
 	right: 20px;
 	bottom: 10px;
+
 }
