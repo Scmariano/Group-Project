@@ -44,7 +44,7 @@ uri="http://www.springframework.org/tags/form"%> <%@ page isErrorPage="true"%>
     		<div id="card" class="card" style="width: 18rem;">
 			 	<img src="${ product.image }" class="card-img-top">
 			  	<div class="card-body">
-			    	<h5 class="card-title"><c:out value="${ product.productName } "/>&emsp;<c:out value="$${ product.price * products.size() }"/></h5>
+			    	<h5 class="card-title"><c:out value="${ product.productName } "/>&emsp;<c:out value="$${ product.price }"/></h5>
 			    	<p class="card-text"><c:out value="${ product.description }"/></p>
 			    	<form:form action="/"></form:form>
 			    	<a href="/add/product/${ product.id }" class="btn btn-primary">Add to cart</a>

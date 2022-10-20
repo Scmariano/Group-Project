@@ -1,7 +1,7 @@
 package com.stephen.groupproject.controllers;
 
+
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -82,27 +82,27 @@ public class HomeController {
 	
 	@GetMapping("/cart")
 	public String cart(Model model, HttpSession session) {
-		int sportCount = 0;
-		int tieCount = 0;
-		int pantsCount = 0;
-		int shirtCount = 0;
+		ArrayList<ProductInCart> shoes = new ArrayList<ProductInCart>();
+		ArrayList<ProductInCart> ties = new ArrayList<ProductInCart>();
+		ArrayList<ProductInCart> pants = new ArrayList<ProductInCart>();
+		ArrayList<ProductInCart> shirts = new ArrayList<ProductInCart>();
 		for (ProductInCart product : userServ.findById((Long) session.getAttribute("userId")).getCart().getProductInCart()) {
 			if (product.getProductName().equals("Sport Shoes")) {
-				sportCount ++;
+				shoes.add(product);
 			}
-			if (product.getProductName().equals("Tie")) {
-				tieCount++;
+			if (product.getProductName().equals("Red Tie")) {
+				ties.add(product);
 			}
 			if (product.getProductName().equals("Khaki Pants")) {
-				pantsCount++;
+				pants.add(product);
 			}
 			if (product.getProductName().equals("White Shirt")) {
-				shirtCount++;
+				shirts.add(product);
 			}
-			model.addAttribute("sportCount", sportCount);
-			model.addAttribute("tieCount", tieCount);
-			model.addAttribute("shirtCount", shirtCount);
-			model.addAttribute("pantsCount", pantsCount);
+			model.addAttribute("shoes", shoes);
+			model.addAttribute("ties", ties);
+			model.addAttribute("shirts", shirts);
+			model.addAttribute("pants", pants);
 			model.addAttribute("user", userServ.findById((Long) session.getAttribute("userId")));
 			model.addAttribute("products", userServ.findById((Long) session.getAttribute("userId")).getCart().getProductInCart());
 		}

@@ -104,12 +104,14 @@ body {
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	padding-left: 50px;
-	
+	padding-bottom: 50px;
 }
 
 .item {
 	display: flex;
 	margin-bottom: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .buttons {

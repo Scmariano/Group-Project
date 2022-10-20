@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stephen.groupproject.models.Cart;
-import com.stephen.groupproject.models.ProductInCart;
 import com.stephen.groupproject.repositories.CartRepo;
 import com.stephen.groupproject.repositories.ProductRepo;
 

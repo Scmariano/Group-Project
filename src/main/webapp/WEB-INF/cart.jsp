@@ -29,24 +29,63 @@ uri="http://www.springframework.org/tags/form"%> <%@ page isErrorPage="true"%>
       <p>Thank you for shopping with us <c:out value="${ user.name }"></c:out>! <br/>Please checkout below.</p>
     </div>
 	<div class="cart-products">
-    	<c:forEach var="product" items="${ products }" varStatus="status">
-    		<c:if test="${ status.getIndex() == 0 || !products.get(status.getIndex()).productName.equals(products.get(status.getIndex() - 1).productName) }">
+		<c:if test="${ shoes.size() > 0 }">
     		<div class="item">
 	    		<div id="card" class="card" style="width: 18rem;">
-				 	<img src="${ product.image }" class="card-img-top">
+				 	<img src="${ shoes.get(0).image }" class="card-img-top">
 				  	<div class="card-body">
-				    	<h5 class="card-title"><c:out value="${ product.productName } "/>&emsp;<c:out value="$${ product.price * products.size() }"/></h5>
-				    	<p class="card-text"><c:out value="${ product.description }"/></p>
-				    	<a href="/edit/${ product.id }" class="editButton btn btn-outline-primary">Edit</a>
-						<a href="/delete/${ product.id }" class="delete btn btn-outline-danger">Remove</a>
-						<c:if test="${ product.productName.equals('Sport Shoes') }">
-							<p class="amount">x<c:out value="${ sportCount }"></c:out></p>
-						</c:if>
+				    	<h5 class="card-title"><c:out value="${ shoes.get(0).productName } "/>&emsp;<c:out value="$ ${ shoes.get(0).price * shoes.size() }"/></h5>
+				    	<p class="card-text"><c:out value="${ shoes.get(0).description }"/></p>
+				    	<a href="/edit/${ shoes.get(shoes.size() - 1).id }" class="editButton btn btn-outline-primary">Edit</a>
+						<a href="/delete/${ shoes.get(shoes.size() - 1).id }" class="delete btn btn-outline-danger">Remove</a>
+						<p class="amount">x<c:out value="${ shoes.size() }"></c:out></p>
 				  	</div>
 				</div>
 			</div>
-			</c:if>
-    	</c:forEach>
+		</c:if>
+    	<c:if test="${ shirts.size() > 0 }">
+    		<div class="item">
+	    		<div id="card" class="card" style="width: 18rem;">
+				 	<img src="${ shirts.get(0).image }" class="card-img-top">
+				  	<div class="card-body">
+				    	<h5 class="card-title"><c:out value="${ shirts.get(0).productName } "/>&emsp;<c:out value="$ ${ shirts.get(0).price * shirts.size() }"/></h5>
+				    	<p class="card-text"><c:out value="${ shirts.get(0).description }"/></p>
+				    	<a href="/edit/${ shirts.get(shirts.size() - 1).id }" class="editButton btn btn-outline-primary">Edit</a>
+						<a href="/delete/${ shirts.get(shirts.size() - 1).id }" class="delete btn btn-outline-danger">Remove</a>
+						<p class="amount">x<c:out value="${ shirts.size() }"></c:out></p>
+				  	</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ ties.size() > 0 }">
+    		<div class="item">
+	    		<div id="card" class="card" style="width: 18rem;">
+				 	<img src="${ ties.get(0).image }" class="card-img-top">
+				  	<div class="card-body">
+				    	<h5 class="card-title"><c:out value="${ ties.get(0).productName } "/>&emsp;<c:out value="$ ${ ties.get(0).price * ties.size() }"/></h5>
+				    	<p class="card-text"><c:out value="${ ties.get(0).description }"/></p>
+				    	<a href="/edit/${ ties.get(ties.size() - 1).id }" class="editButton btn btn-outline-primary">Edit</a>
+						<a href="/delete/${ ties.get(ties.size() - 1).id }" class="delete btn btn-outline-danger">Remove</a>
+						<p class="amount">x<c:out value="${ ties.size() }"></c:out></p>
+				  	</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ pants.size() > 0 }">
+    		<div class="item">
+	    		<div id="card" class="card" style="width: 18rem;">
+				 	<img src="${ pants.get(0).image }" class="card-img-top">
+				  	<div class="card-body">
+				    	<h5 class="card-title"><c:out value="${ pants.get(0).productName } "/>&emsp;<c:out value="$ ${ pants.get(0).price * pants.size() }"/></h5>
+				    	<p class="card-text"><c:out value="${ pants.get(0).description }"/></p>
+				    	<a href="/edit/${ pants.get(pants.size() - 1).id }" class="editButton btn btn-outline-primary">Edit</a>
+						<a href="/delete/${ pants.get(pants.size() - 1).id }" class="delete btn btn-outline-danger">Remove</a>
+						<p class="amount">x<c:out value="${ pants.size() }"></c:out></p>
+				  	</div>
+				</div>
+			</div>
+		</c:if>
+    	
     </div>
   </body>
 </html>

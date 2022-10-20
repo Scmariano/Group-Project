@@ -31,6 +31,7 @@ public class Cart {
     private List<ProductInCart> productInCart;
 
 	public Cart() {
+		
 	}
 	
 	public Long getId() {
