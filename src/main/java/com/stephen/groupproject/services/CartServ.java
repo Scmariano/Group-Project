@@ -12,38 +12,6 @@ import com.stephen.groupproject.repositories.ProductRepo;
 
 @Service
 public class CartServ {
-<<<<<<< HEAD
-    @Autowired ProductRepo productRepo;
-    @Autowired CartRepo cartRepo;
-    
-    public Cart findCartById(Long id) {
-        Optional<Cart> cart = cartRepo.findById(id);
-        if (cart.isPresent()) {
-            return cart.get();
-        } else {
-            return null;
-        }
-    }
-    
-    
-    // create
-    public Cart createCart(Cart cart) {
-        return cartRepo.save(cart);
-    }
-    
-    //Delete Product
-    public void deleteCart(Long id) {
-        cartRepo.deleteById(id);
-    }
-    
-    public void showCart(Cart cart) {
-        for(ProductInCart productInCart : cart.getProductInCart()) {
-            System.out.println(productInCart.getProductName());
-        }
-    }
-    
-}
-=======
 	@Autowired ProductRepo productRepo;
 	@Autowired CartRepo cartRepo;
 	
@@ -69,4 +37,3 @@ public class CartServ {
 	
 }
 
->>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b

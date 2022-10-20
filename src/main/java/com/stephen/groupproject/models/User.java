@@ -8,10 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< HEAD
-import javax.persistence.OneToMany;
-=======
->>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -30,12 +26,9 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-<<<<<<< HEAD
-=======
 	
 	@NotEmpty(message="Full name is required!")
     private String name;
->>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
     
     
     @NotEmpty(message="Email is required!")
@@ -57,30 +50,17 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 	
-<<<<<<< HEAD
-	
-	
-	
-=======
->>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 	@OneToOne(mappedBy="user", fetch = FetchType.LAZY)
     private Cart cart;
 	
 	
 	public User() {}
 	
-<<<<<<< HEAD
-	public User(String email, String password, String confirm) {
-		this.email = email;
-		this.password = password;
-		this.confirm = confirm;
-=======
 	public User(String name, String email, String password, String confirm) {
 		this.email = email;
 		this.password = password;
 		this.confirm = confirm;
 		this.cart = new Cart();
->>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 	}
 
 	public Long getId() {
@@ -123,12 +103,6 @@ public class User {
 		return updatedAt;
 	}
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 	public Cart getCart() {
 		return this.cart;
 	}
@@ -137,8 +111,6 @@ public class User {
 		this.cart = cart;
 	}
 	
-<<<<<<< HEAD
-=======
 	public String getName() {
 		return name;
 	}
@@ -147,7 +119,6 @@ public class User {
 		this.name = name;
 	}
 
->>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
