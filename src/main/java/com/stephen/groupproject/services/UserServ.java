@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 
 import com.stephen.groupproject.models.LoginUser;
 import com.stephen.groupproject.models.User;
+import com.stephen.groupproject.repositories.CartRepo;
 import com.stephen.groupproject.repositories.UserRepo;
 
 
@@ -18,6 +19,7 @@ import com.stephen.groupproject.repositories.UserRepo;
 public class UserServ {
 	
 	@Autowired UserRepo userRepo;
+	@Autowired CartRepo cartRepo;
 	
 	// Registration call
 	public User register(User newUser, BindingResult result) {
@@ -37,6 +39,7 @@ public class UserServ {
 		
 		String hashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
 		newUser.setPassword(hashed);
+		
 		return userRepo.save(newUser);
 		
 	}

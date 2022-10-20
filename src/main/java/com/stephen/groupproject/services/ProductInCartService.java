@@ -13,6 +13,7 @@ import com.stephen.groupproject.repositories.ProductInCartRepo;
 
 @Service
 public class ProductInCartService {
+<<<<<<< HEAD
     @Autowired ProductInCartRepo productInCartRepo;
     @Autowired CartRepo cartRepo;
     @Autowired CartServ cartService;
@@ -51,3 +52,43 @@ public class ProductInCartService {
     }
     
 }
+=======
+	@Autowired ProductInCartRepo productInCartRepo;
+	@Autowired CartRepo cartRepo;
+	@Autowired CartServ cartService;
+	
+	
+	// show all products
+	public List<ProductInCart> allProductsInCart() {
+		return productInCartRepo.findAll();
+	}
+	
+	// create
+	public ProductInCart AddToCart(Product product, Long id) {
+		ProductInCart productInCart = new ProductInCart(product.getImage(), product.getProductName(), product.getDescription(), product.getPrice());
+		productInCart.setCart(cartService.findCartById(id));
+		return productInCartRepo.save(productInCart);
+	}
+	
+	//Update	
+	public ProductInCart updateCartProduct(ProductInCart productInCart) {
+		return productInCartRepo.save(productInCart);
+	}
+	
+	//Delete Product
+	public void deleteProductInCart(Long id) {
+		productInCartRepo.deleteById(id);
+	}
+	
+	//Get a Product
+	public ProductInCart findProductInCartById(Long id) {
+		Optional<ProductInCart>optPro = productInCartRepo.findById(id);
+		if(optPro.isPresent()) {
+			return optPro.get();
+		}else{
+			return null;
+		}
+	}
+	
+}
+>>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b

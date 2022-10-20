@@ -1,13 +1,12 @@
 package com.stephen.groupproject.controllers;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.stephen.groupproject.models.Product;
 
+=======
+
+>>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 import com.stephen.groupproject.services.ProductServ;
 import com.stephen.groupproject.services.UserServ;
 
 @Controller
 public class MainController {
+<<<<<<< HEAD
 	@Autowired
 	UserServ userServ;
 	@Autowired
@@ -89,4 +92,23 @@ public class MainController {
 	
 	
 
+=======
+	@Autowired UserServ userServ;
+	@Autowired ProductServ productServ;
+	
+	
+	@GetMapping("/dashboard")
+	public String dashboard(HttpSession session, Model model) {
+		Long userId = (Long) session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/logout";
+		} else {
+			model.addAttribute("user", userServ.findById(userId));
+			model.addAttribute("products", productServ.allProducts());
+			model.addAttribute("cart", userServ.findById(userId).getCart());
+			return "index.jsp";
+		}
+	}
+	
+>>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 }

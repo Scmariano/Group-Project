@@ -26,7 +26,15 @@
         <div class="register">
           <h1>Sign Up</h1>
           <form:form action="/register" method="POST" modelAttribute="newUser">
+<<<<<<< HEAD
                    
+=======
+           
+           	<div class="row">
+            	<form:input type="text" class="input" path="name" placeholder="Full Name"/>
+            	<form:errors path="name" class="text-danger" />
+            </div>
+>>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
             
            	<div class="row">
             	<form:input type="email" class="input" path="email" placeholder="Email"/>

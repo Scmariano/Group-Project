@@ -59,6 +59,69 @@ body {
 .products {
 	display: flex;
 	flex-wrap: wrap;
+<<<<<<< HEAD
 	padding-left: 50px;
 	padding-right: 50px;
+=======
+	justify-content: space-between;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 50px;
+}
+
+.card {
+	position: relative;
+	height: 460px;
+}
+
+.card-body {
+	position: absolute;
+	bottom: 10px;
+}
+
+.cartItems {
+	position: absolute;
+	color: black;
+	right: 10px;
+	top: 10px;
+	font-size: 13px;
+	background-color: red;
+	padding-right: 6px;
+	padding-left: 6px;
+	
+	border-radius: 50px;
+}
+
+.fa {
+	position: relative;
+}
+
+.heading {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.cart-products {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	
+	
+}
+
+.item {
+	display: flex;
+	margin-bottom: 30px;
+}
+
+.buttons {
+	width: 18rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items:flex-start;
+	padding-left: 30px;
+>>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 }
