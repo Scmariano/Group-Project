@@ -26,11 +26,10 @@ import com.stephen.groupproject.services.UserServ;
 
 @Controller
 public class HomeController {
-    @Autowired UserServ userServ;
-    @Autowired ProductServ productServ;
-    @Autowired CartServ cartServ;
-    @Autowired ProductInCartService productInCartServ;
-
+	@Autowired UserServ userServ;
+	@Autowired ProductServ productServ;
+	@Autowired CartServ cartServ;
+	@Autowired ProductInCartService productInCartServ;
 	
 	// Page for login/registration
 	@GetMapping("/")
@@ -54,7 +53,6 @@ public class HomeController {
 			Cart newCart = new Cart();
 			newCart.setUser(user);
 			cartServ.createCart(newCart);
-
 			return "redirect:/dashboard";
 		}
 		
@@ -77,19 +75,6 @@ public class HomeController {
 	}
 	
 	@GetMapping("/add/product/{id}")
-    public String  addProduct(@PathVariable("id") Long id, HttpSession session) {
-        productInCartServ.AddToCart(productServ.findProductId(id), userServ.findById((Long) session.getAttribute("userId")).getCart().getId());     
-        return "redirect:/dashboard";
-    }
-    
-    @GetMapping("/cart")
-    public String cart(Model model, HttpSession session) {
-        model.addAttribute("user", userServ.findById((Long) session.getAttribute("userId")));
-        model.addAttribute("products", userServ.findById((Long) session.getAttribute("userId")).getCart().getProductInCart());
-        return "cart.jsp";
-    }
-	
-=======
 	public String  addProduct(@PathVariable("id") Long id, HttpSession session) {
 		productInCartServ.AddToCart(productServ.findProductId(id), userServ.findById((Long) session.getAttribute("userId")).getCart().getId());		
 		return "redirect:/dashboard";
