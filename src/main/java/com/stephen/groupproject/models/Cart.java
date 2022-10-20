@@ -16,6 +16,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name="carts")
 public class Cart {
+<<<<<<< HEAD
+    
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    
+    private int count;
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", unique = true, nullable = false)
+    private User user;
+    
+    @OneToMany(mappedBy="cart", fetch = FetchType.LAZY)
+    private List<ProductInCart> productInCart;
+
+    public Cart() {
+    }
+    
+    public Long getId() {
+        return id;
+    }
+=======
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -36,19 +58,43 @@ public class Cart {
 	public Long getId() {
 		return id;
 	}
+>>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+    public void setCount(int count) {
+        this.count = count;
+    }
 
+<<<<<<< HEAD
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<ProductInCart> getProductInCart() {
+        return productInCart;
+    }
+
+    public void setProductInCart(List<ProductInCart> productInCart) {
+        this.productInCart = productInCart;
+    }
+
+
+    
+    
+    
+}
+=======
 	public User getUser() {
 		return user;
 	}
@@ -70,3 +116,4 @@ public class Cart {
 	
 	
 }
+>>>>>>> 65c39e13908fd5f77f6fae5dfb2549437697aa0b

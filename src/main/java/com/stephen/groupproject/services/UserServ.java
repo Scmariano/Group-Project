@@ -88,12 +88,12 @@ public class UserServ {
 		}
 	}
 	
-	// Show all User(I include this in case we wanna show all the registered users)
+	// Show all User()
 	public List<User>allUsers() {
 		return userRepo.findAll();
 	}
 	
-	// Update a user profile(I also included this in case we wanna update a user profile)
+	// Update a user profile()
 	public User updateUser(User user) {
 		return userRepo.save(user);
 	}
