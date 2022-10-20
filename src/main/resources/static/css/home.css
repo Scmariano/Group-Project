@@ -101,9 +101,9 @@ body {
 
 .cart-products {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 	flex-wrap: wrap;
-	
+	padding-left: 50px;
 	
 }
 
@@ -119,4 +119,15 @@ body {
 	justify-content: space-evenly;
 	align-items:flex-start;
 	padding-left: 30px;
+}
+
+.card-title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.amount {
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
 }

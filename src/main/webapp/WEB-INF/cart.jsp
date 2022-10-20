@@ -29,19 +29,33 @@ uri="http://www.springframework.org/tags/form"%> <%@ page isErrorPage="true"%>
       <p>Thank you for shopping with us <c:out value="${ user.name }"></c:out>! <br/>Please checkout below.</p>
     </div>
 	<div class="cart-products">
-    	<c:forEach var="product" items="${ products }">
+    	<c:forEach var="product" items="${ products }" varStatus="status">
+    		<c:if test="${ status.getIndex() == 0 || !products.get(status.getIndex()).productName.equals(products.get(status.getIndex() - 1).productName) }">
     		<div class="item">
 	    		<div id="card" class="card" style="width: 18rem;">
 				 	<img src="${ product.image }" class="card-img-top">
 				  	<div class="card-body">
-				    	<h5 class="card-title"><c:out value="${ product.productName } $${ product.price }"/></h5>
+				    	<h5 class="card-title"><c:out value="${ product.productName } "/>&emsp;<c:out value="$${ product.price * products.size() }"/></h5>
 				    	<p class="card-text"><c:out value="${ product.description }"/></p>
 				    	<a href="/edit/${ product.id }" class="editButton btn btn-outline-primary">Edit</a>
 						<a href="/delete/${ product.id }" class="delete btn btn-outline-danger">Remove</a>
+						<c:if test="${ product.productName.equals('Sport Shoes') }">
+							<p class="amount">x<c:out value="${ sportCount }"></c:out></p>
+						</c:if>
 				  	</div>
 				</div>
 			</div>
+			</c:if>
     	</c:forEach>
     </div>
   </body>
 </html>
+
+
+
+
+
+
+
+
+

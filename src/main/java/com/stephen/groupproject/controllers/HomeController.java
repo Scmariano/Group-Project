@@ -1,5 +1,8 @@
 package com.stephen.groupproject.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.stephen.groupproject.models.Cart;
 import com.stephen.groupproject.models.LoginUser;
+import com.stephen.groupproject.models.ProductInCart;
 import com.stephen.groupproject.models.User;
 import com.stephen.groupproject.services.CartServ;
 import com.stephen.groupproject.services.ProductInCartService;
@@ -78,9 +82,44 @@ public class HomeController {
 	
 	@GetMapping("/cart")
 	public String cart(Model model, HttpSession session) {
-		model.addAttribute("user", userServ.findById((Long) session.getAttribute("userId")));
-		model.addAttribute("products", userServ.findById((Long) session.getAttribute("userId")).getCart().getProductInCart());
+		int sportCount = 0;
+		int tieCount = 0;
+		int pantsCount = 0;
+		int shirtCount = 0;
+		for (ProductInCart product : userServ.findById((Long) session.getAttribute("userId")).getCart().getProductInCart()) {
+			if (product.getProductName().equals("Sport Shoes")) {
+				sportCount ++;
+			}
+			if (product.getProductName().equals("Tie")) {
+				tieCount++;
+			}
+			if (product.getProductName().equals("Khaki Pants")) {
+				pantsCount++;
+			}
+			if (product.getProductName().equals("White Shirt")) {
+				shirtCount++;
+			}
+			model.addAttribute("sportCount", sportCount);
+			model.addAttribute("tieCount", tieCount);
+			model.addAttribute("shirtCount", shirtCount);
+			model.addAttribute("pantsCount", pantsCount);
+			model.addAttribute("user", userServ.findById((Long) session.getAttribute("userId")));
+			model.addAttribute("products", userServ.findById((Long) session.getAttribute("userId")).getCart().getProductInCart());
+		}
+		
 		return "cart.jsp";
+	}
+
+	
+	@GetMapping("/edit/{id}")
+	public String editProduct() {
+		return "edit.jpg";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteProduct(@PathVariable("id") Long id) {
+		productInCartServ.deleteProductInCart(id);
+		return "redirect:/cart";
 	}
 	
 	
