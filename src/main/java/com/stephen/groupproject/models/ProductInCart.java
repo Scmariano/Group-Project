@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -18,8 +21,8 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="products")
-public class Product {
+@Table(name="productsInCart")
+public class ProductInCart {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +41,10 @@ public class Product {
     @Min(value=1, message="Price must be greater than 0")
     private Double price;
     
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cart_id")
+    public Cart cart;
+    
     @Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
@@ -46,13 +53,13 @@ public class Product {
     private Date updatedAt;
     
     
-    
 
-    public Product() {
+    public ProductInCart() {
         
     }
 
-    public Product(String image, String productName, String description, Double price) {
+    public ProductInCart(String image, String productName, String description, Double price) {
+        this.image = image;
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -108,6 +115,14 @@ public class Product {
         this.image = image;
     }
     
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = new Date();

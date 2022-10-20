@@ -9,15 +9,23 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.stephen.groupproject.models.LoginUser;
 import com.stephen.groupproject.models.User;
+import com.stephen.groupproject.services.CartServ;
+import com.stephen.groupproject.services.ProductInCartService;
+import com.stephen.groupproject.services.ProductServ;
 import com.stephen.groupproject.services.UserServ;
 
 @Controller
 public class HomeController {
-	@Autowired UserServ userServ;
+    @Autowired UserServ userServ;
+    @Autowired ProductServ productServ;
+    @Autowired CartServ cartServ;
+    @Autowired ProductInCartService productInCartServ;
+    
 	
 	// Page for login/registration
 	@GetMapping("/")
@@ -29,17 +37,16 @@ public class HomeController {
 	
 	//Registration form
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute("newUser")User newUser, 
-			BindingResult result, Model model, HttpSession session) {
+	public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
 		
 		User user = userServ.register(newUser, result);
 		
-		if(result.hasErrors()) {
+		if (result.hasErrors() || user == null) {
 			model.addAttribute("newLogin", new LoginUser());
 			return "login.jsp";
-		}else {
+		} else {
 			session.setAttribute("userId", user.getId());
-			return "redirect:/home";
+			return "redirect:/dashboard";
 		}
 		
 	}
@@ -56,9 +63,23 @@ public class HomeController {
 			return "login.jsp";
 		}
 			session.setAttribute("userId", user.getId());
-			return "redirect:/home";
+			return "redirect:/dashboard";
 		
 	}
+	
+	@GetMapping("/add/product/{id}")
+    public String  addProduct(@PathVariable("id") Long id, HttpSession session) {
+        productInCartServ.AddToCart(productServ.findProductId(id), userServ.findById((Long) session.getAttribute("userId")).getCart().getId());     
+        return "redirect:/dashboard";
+    }
+    
+    @GetMapping("/cart")
+    public String cart(Model model, HttpSession session) {
+        model.addAttribute("user", userServ.findById((Long) session.getAttribute("userId")));
+        model.addAttribute("products", userServ.findById((Long) session.getAttribute("userId")).getCart().getProductInCart());
+        return "cart.jsp";
+    }
+	
 	
 	
 	//Get Method for logout/ We can change it to a Post if you guys want it to be a button form

@@ -10,76 +10,63 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Range;
-
 @Entity
-@Table(name="cart")
+@Table(name="carts")
 public class Cart {
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
-	
-	@Range(min=1, message = "Minimum item that you can have is 1")
-	private int count;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User userInCart;
-	
-	@OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name="product_id")
-    private List <Product>productInCart;
+    
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    
+    private int count;
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", unique = true, nullable = false)
+    private User user;
+    
+    @OneToMany(mappedBy="cart", fetch = FetchType.LAZY)
+    private List<ProductInCart> productInCart;
 
-	public Cart() {}
-	
-	public Long getId() {
-		return id;
-	}
+    public Cart() {
+    }
+    
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+    public void setCount(int count) {
+        this.count = count;
+    }
 
-	public User getUserInCart() {
-		return userInCart;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUserInCart(User userInCart) {
-		this.userInCart = userInCart;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public List<Product> getProductInCart() {
-		return productInCart;
-	}
+    public List<ProductInCart> getProductInCart() {
+        return productInCart;
+    }
 
-	public void setProductInCart(List<Product> productInCart) {
-		this.productInCart = productInCart;
-	}
+    public void setProductInCart(List<ProductInCart> productInCart) {
+        this.productInCart = productInCart;
+    }
 
-	public void increment() {
-		// TODO Auto-generated method stub
-		count ++;
-		
-	}
 
-	public void decriment() {
-		// TODO Auto-generated method stub
-		count --;
-	}
-
-	
-
-	
-	
-	
+    
+    
+    
 }
